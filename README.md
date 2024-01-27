@@ -1,1 +1,2 @@
-# mata_python_forum
+# Marco's Forum webapp using Python
+Created by Marco Mata
