@@ -1,5 +1,11 @@
-from flask import session
+from flask import session, render_template
 from functools import wraps
 
 def check_logged_in(func):
-    pass
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if 'logged_in' in session:
+            return func(*args, **kwargs)
+        return render_template('/login')
+    
+    return wrapper
