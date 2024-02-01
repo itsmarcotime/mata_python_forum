@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>{{ the_title }}</title>
-        <link rel="stylesheet" href="static/hf.css"/>
-    </head>
+<html lang="en">
 
-    <body>
-        {% block body %}
-        
-        {% endblock %}
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marco's Forum News</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>
+        <a href="/">Marco's Forum News</a>
+      </h1>
+      <nav>
+        {% if loggedIn == True %}
+        <a href="/entry">Home Page</a>
+        <button id="logout" class="btn-no-style">logout</button>
+        {% else %}
+        <a href="/login">login</a>
+        {% endif %}
+      </nav>
+    </header>
+    <main>
+      {% block body %}
+      {% endblock %}
+    </main>
+    <footer>
+      Big Thanks from MataGrub.
+    </footer>
+  </div>
+  
+  {% if loggedIn %}
+  {% endif %}
+</body>
+
 </html>

@@ -1,17 +1,34 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<section>
+  <h2>Create New Post</h2>
 
-<h2>{{ the_title }}</h2>
+  <form class="">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-url">Link</label>
+      <input id="post-url" name="post-url" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
 
-<form method="POST" action="/search4">
-    <table>
-        <p>Use this form to submit a search request:</p>
-        <tr><td>Phrase:</td><td><input name="phrase" type="TEXT" width="60"></td></tr>
-        <tr><td>Letters:</td><td><input name="letters" type="TEXT" value="aeiou"></td></tr>
-    </table>
-    <p>When you're ready click this button:</p>
-    <p><input value="Do it!" type="SUBMIT"></p>
-</form>
+{% if posts|length > 0 %}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {% for post in posts %}
+    <li>
+      {% include "partials/post-info.html" %}
+      <a href="/dashboard/edit/{{post.id}}" class="">Edit post</a>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
 
 {% endblock %}
