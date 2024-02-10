@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home_page():
-    return render_template('entry.html', the_title='Welcome to the Mata Forum Page!')
+    return render_template('home.html', the_title='Welcome to the Mata Forum Page!')
 
 @app.route('/secret')
 @check_logged_in
