@@ -1,7 +1,14 @@
-from flask import Flask, render_template, session
+import os
+from dotenv import find_dotenv, load_dotenv
+from flask import Flask, render_template, requests, session
 from checker import check_logged_in
 
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path)
+
 app = Flask(__name__)
+
+app.config['dbconfig'] = os.getenv("sql_config")
 
 @app.route('/')
 def home_page():
