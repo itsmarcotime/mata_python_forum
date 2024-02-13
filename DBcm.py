@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector, hashlib
 
 class UseDatabase:
     def __init__(self, config: dict):
