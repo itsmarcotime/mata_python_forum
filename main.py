@@ -25,7 +25,10 @@ def login_page():
     msg = ''
 
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        user
+        username = request.form['username']
+        password = request.form['password']
+
+        
 
     return render_template('login.html', msg='')
 
