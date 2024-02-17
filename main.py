@@ -21,14 +21,13 @@ def secret_page():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
-    # error message
     msg = ''
 
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+    if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
-        
+    session['logged_in'] = True
 
     return render_template('login.html', msg='')
 
