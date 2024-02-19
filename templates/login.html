@@ -4,20 +4,17 @@
 <div class="login">
   <h1>Login</h1>
   <div class="links">
-    <a href="{{ url_for('login_page') }}" class="active">Login</a>
+    <a href="{{ url_for('do_login') }}" class="active">Login</a>
     <a href="/register">Register</a>
   </div>
-  <form action="{{ url_for('login_page') }}" method="post">
-    <label for="username">
-      <i class="fas fa-user"></i>
-    </label>
-    <input type="text" name="username" placeholder="Username" id="username" required>
-    <label for="password">
-      <i class="fas fa-lock"></i>
-    </label>
-    <input type="password" name="password" placeholder="Password" id="password" required>
-    <div class="msg">{{ msg }}</div>
-    <input type="submit" value="Login">
+  <form action="{{ url_for('do_login') }}" method="post">
+    <label>Username</label>
+    <input type="text" name="username" id="username" required>
+
+    <label>Password</label>
+    <input type="password" name="password" id="password" required>
+    <!-- might be "do_login" here -->
+    <input type="submit" value="login">
   </form>
 </div>
 

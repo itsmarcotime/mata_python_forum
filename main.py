@@ -20,7 +20,7 @@ def secret_page():
     return "if you are seeing this then you are logged in!"
 
 @app.route('/login', methods=['GET', 'POST'])
-def login_page():
+def do_login():
     msg = ''
 
     if request.method == 'POST':
