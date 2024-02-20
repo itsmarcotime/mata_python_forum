@@ -1,18 +1,26 @@
 import os
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, redirect, url_for
 from checker import check_logged_in
+import mysql.connector
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 
 app = Flask(__name__)
 
-app.config['dbconfig'] = os.getenv("sql_config")
+dbconfig = {
+    'host': os.getenv("sql_config_host"),
+    'user': os.getenv("sql_config_user"),
+    'password': os.getenv("sql_config_password"),
+    'database': os.getenv("sql_config_database")
+}
+conn = mysql.connector.connect(**dbconfig)
+cursor = conn.cursor()
 
 @app.route('/')
 def home_page():
-    return render_template('home.html', the_title='Welcome to the Mata Forum Page!')
+    return render_template('base.html', the_title='Welcome to the Mata Forum Page!')
 
 @app.route('/secret')
 @check_logged_in
@@ -26,10 +34,16 @@ def do_login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        cursor.execute('SELECT * FROM accounts WHERE username=%s AND password=%s', (username, password))
+        record = cursor.fetchone()
 
-    session['logged_in'] = True
-
-    return render_template('login.html', msg='')
+        if record:
+            session['logged_in'] = True
+            session['username'] = record[1]
+            return redirect(url_for('/home'))
+        else:
+            msg = 'Incorrect username or password. Try again!'
+    return render_template('login.html', msg=msg)
 
 @app.route('/logout')
 def do_logout():

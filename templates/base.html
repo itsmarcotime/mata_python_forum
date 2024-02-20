@@ -15,8 +15,8 @@
         <a href="/">Marco's Forum News</a>
       </h1>
       <nav>
-        {% if loggedIn == True %}
-        <a href="/entry">Home Page</a>
+        {% if logged_in == True %}
+        <a href="/home">Home Page</a>
         <button id="logout" class="btn-no-style">logout</button>
         {% else %}
         <a href="/login">login</a>
@@ -32,7 +32,7 @@
     </footer>
   </div>
   
-  {% if loggedIn %}
+  {% if logged_in %}
   {% endif %}
 </body>
 
