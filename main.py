@@ -25,7 +25,7 @@ def base_page():
 @app.route('/home')
 # @check_logged_in
 def home():
-    return render_template('home.html')
+    return render_template('home.html', username=session['username'])
 
 @app.route('/login', methods=['GET', 'POST'])
 def do_login():
