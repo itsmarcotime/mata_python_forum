@@ -19,13 +19,13 @@ conn = mysql.connector.connect(**dbconfig)
 cursor = conn.cursor()
 
 @app.route('/')
-def home_page():
+def base_page():
     return render_template('base.html', the_title='Welcome to the Mata Forum Page!')
 
-@app.route('/secret')
-@check_logged_in
-def secret_page():
-    return "if you are seeing this then you are logged in!"
+@app.route('/home')
+# @check_logged_in
+def home():
+    return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def do_login():
@@ -40,7 +40,7 @@ def do_login():
         if record:
             session['logged_in'] = True
             session['username'] = record[1]
-            return redirect(url_for('/home'))
+            return redirect(url_for('home'))
         else:
             msg = 'Incorrect username or password. Try again!'
     return render_template('login.html', msg=msg)
