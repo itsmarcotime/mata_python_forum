@@ -4,6 +4,12 @@
 <section>
   <h2>Create New Post</h2>
 
+  <div>
+    <h2>Welcome, {{username}}!
+      <a href='{{url_for('do_logout')}}'>Logout</a> 
+    </h2>
+  </div>
+
   <form class="">
     <div>
       <label for="post-title">Title</label>

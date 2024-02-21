@@ -48,7 +48,8 @@ def do_login():
 @app.route('/logout')
 def do_logout():
     session.pop('logged_in')
-    return 'You have logged out'
+    session.pop('username')
+    return redirect(url_for('do_login'))
 
 app.secret_key = os.getenv("secret_key")
 
