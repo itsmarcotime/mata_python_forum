@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>Hello!</h1>
+<div class="register">
+    <h1>Register here!</h1>
+    <div class="links">
+      <a href="{{ url_for('do_login') }}" class="active">Login</a>
+      <a href="/register">Register</a>
+    </div>
+    <form action="{{ url_for('do_login') }}" method="post">
+      <label>Username</label>
+      <input type="text" name="username" id="username" required>
+  
+      <label>Password</label>
+      <input type="password" name="password" id="password" required>
+      <!-- might be "do_login" for value here -->
+      <input type="submit" value="login">
+    </form>
+  </div>
 {% endblock %}

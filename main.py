@@ -27,6 +27,10 @@ def base_page():
 def home():
     return render_template('home.html', username=session['username'])
 
+@app.route('/register')
+def do_register():
+    return render_template('register.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def do_login():
     msg = ''
