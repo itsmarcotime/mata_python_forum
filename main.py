@@ -27,9 +27,18 @@ def base_page():
 def home():
     return render_template('home.html', username=session['username'])
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def do_register():
-    return render_template('register.html')
+    msg = ''
+
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+    elif request.method == 'POST':
+        msg = 'Please fill out the required fields.'
+
+    return render_template('register.html', msg=msg)
 
 @app.route('/login', methods=['GET', 'POST'])
 def do_login():
