@@ -2,7 +2,7 @@ import os
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, render_template, session, request, redirect, url_for
 from checker import check_logged_in
-import mysql.connector
+import mysql.connector, hashlib, re
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
@@ -32,9 +32,28 @@ def do_register():
     msg = ''
 
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        # check if account exists in mysql
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
+        cursor.execute('SELECT * FROM accounts WHERE username = %s', (username,))
+        account = cursor.fetchone()
+        # if account exists show error && validation checks
+        if account:
+            msg = 'This account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'You did not use a correct email address!'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Sorry, Username can only contain characters and numbers!'
+        elif not username or not password or not email:
+            msg = 'Please fill out all the feilds in the form!'
+        else:
+            # Need to hash password
+            # Account doesnt exits && the form is filled out so creat the user
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, email,))
+            conn.commit()
+            msg = 'You have successfully registered your account! Continue to login.'
+
     elif request.method == 'POST':
         msg = 'Please fill out the required fields.'
 

@@ -2,17 +2,16 @@
 
 {% block body %}
 <div class="login">
-  <h1>Login</h1>
+  <h1>Login!</h1>
   <div class="links">
     <a href="{{ url_for('do_login') }}" class="active">Login</a>
     <a href="/register">Register</a>
   </div>
   <form action="{{ url_for('do_login') }}" method="post">
-    <label>Username</label>
-    <input type="text" name="username" id="username" required>
+    
+    <input type="text" placeholder="Username" name="username" id="username" required>
 
-    <label>Password</label>
-    <input type="password" name="password" id="password" required>
+    <input type="password" placeholder="Password" name="password" id="password" required>
     <!-- might be "do_login" for value here -->
     <input type="submit" value="login">
   </form>
