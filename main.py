@@ -23,7 +23,7 @@ def base_page():
     return render_template('base.html', the_title='Welcome to the Mata Forum Page!')
 
 @app.route('/home')
-# @check_logged_in
+@check_logged_in
 def home():
     return render_template('home.html', username=session['username'])
 

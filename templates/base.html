@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marco's Forum News</title>
+  <title>MataGrub News</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 
 <body>
   <div class="">
     <header>
-      <h1>
-        <a href="/">Marco's Forum News</a>
+      <h1 class="pageTitle">
+        <a href="/home" class="pageTitle">MataGrub News</a>
       </h1>
       <nav>
         {% if logged_in == True %}
-        <a href="/home">Home Page</a>
+        <a href="/home" class="pageTitle">Home Page</a>
         <button id="logout" class="btn-no-style">logout</button>
         {% else %}
-        <a href="/login">login</a>
+        <a href="/login" class="pageTitle">login</a>
         {% endif %}
       </nav>
     </header>
@@ -28,7 +28,7 @@
       {% endblock %}
     </main>
     <footer>
-      Big Thanks from MataGrub.
+      Created By MataGrub 2024
     </footer>
   </div>
   
