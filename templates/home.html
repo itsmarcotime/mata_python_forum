@@ -2,15 +2,15 @@
 
 {% block body %}
 <section>
-  <h2>Create New Post</h2>
 
   <div>
     <h2>Welcome, {{username}}!
       <a href='{{url_for('do_logout')}}'>Logout</a> 
     </h2>
   </div>
+  <h2>Create New Post</h2>
 
-  <form class="">
+  <!-- <form class="">
     <div>
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="post-title" />
@@ -20,7 +20,9 @@
       <input id="post-url" name="post-url" />
     </div>
     <button type="submit" class="btn">Create</button>
-  </form>
+  </form> -->
+
+  <a href="/add_post">Click here to write a post!</a>
 </section>
 
 {% if posts|length > 0 %}

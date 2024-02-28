@@ -83,6 +83,14 @@ def do_logout():
     session.pop('username')
     return redirect(url_for('do_login'))
 
+@app.route('/add_post', methods=['GET', 'POST'])
+@check_logged_in
+def add_post():
+    msg = ''
+
+    title = request.form['title']
+    body = request.form['body']
+
 app.secret_key = os.getenv("secret_key")
 
 if __name__ == "__main__":
