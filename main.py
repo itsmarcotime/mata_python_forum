@@ -88,8 +88,19 @@ def do_logout():
 def add_post():
     msg = ''
 
-    title = request.form['title']
-    body = request.form['body']
+    if request.method == 'POST' and 'title' in request.form and 'body' in request.form:
+        title = request.form['title']
+        body = request.form['body']
+        cursor.execute('INSERT INTO articles(title, body, author) VALUES(%s, %s, %s)', (title, body, session['username']))
+        conn.commit()
+        msg = 'Your post was created successfully!'
+        return redirect(url_for(home))
+    
+    return render_template('add_post.html', msg=msg)
+
+    
+
+
 
 app.secret_key = os.getenv("secret_key")
 
