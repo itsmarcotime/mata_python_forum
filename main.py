@@ -94,7 +94,7 @@ def add_post():
         cursor.execute('INSERT INTO articles(title, body, author) VALUES(%s, %s, %s)', (title, body, session['username']))
         conn.commit()
         msg = 'Your post was created successfully!'
-        return redirect(url_for(home))
+        return redirect(url_for('home'))
     
     return render_template('add_post.html', msg=msg)
 

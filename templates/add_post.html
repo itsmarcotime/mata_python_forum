@@ -2,16 +2,16 @@
 
 {% block body %}
 
-<!-- <form class="">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
-    </div>
-    <div>
-      <label for="post-url">Link</label>
-      <input id="post-url" name="post-url" />
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form> -->
+<h1>Create Post</h1>
+<form action="{{ url_for('add_post') }}" method="post" autocomplete="off">
+        
+    <input type="title" name="title" placeholder="Title" id="title" required>
+
+    <input type="text" name="body" placeholder="Body" id="body" required>
+
+    <div class="msg">{{ msg }}</div>
+    <input type="submit" value="Create Post">
+
+</form>
 
 {% endblock %}
