@@ -25,7 +25,15 @@ def base_page():
 @app.route('/home')
 @check_logged_in
 def home():
-    return render_template('home.html', username=session['username'])
+
+    cursor.execute("SELECT * FROM articles")
+    posts = cursor.fetchall()
+
+    if posts:
+        return render_template('home.html', username=session['username'], articles=posts)
+    else:
+        msg = 'No posts have been found. Click on create post!'
+        return render_template('home.html', username=session['username'], msg=msg)
 
 @app.route('/register', methods=['GET', 'POST'])
 def do_register():
@@ -97,10 +105,6 @@ def add_post():
         return redirect(url_for('home'))
     
     return render_template('add_post.html', msg=msg)
-
-    
-
-
 
 app.secret_key = os.getenv("secret_key")
 
