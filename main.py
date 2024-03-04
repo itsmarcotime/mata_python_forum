@@ -25,7 +25,6 @@ def base_page():
 @app.route('/home')
 @check_logged_in
 def home():
-
     cursor.execute("SELECT * FROM articles")
     posts = cursor.fetchall()
 
@@ -105,6 +104,34 @@ def add_post():
         return redirect(url_for('home'))
     
     return render_template('add_post.html', msg=msg)
+
+@app.route('/posts')
+@check_logged_in
+def posts():
+    cursor.execute("SELECT * FROM articles")
+    posts = cursor.fetchall()
+
+    if posts:
+        return render_template('posts.html', username=session['username'], articles=posts)
+    else:
+        msg = 'No posts have been found. Click on create post!'
+        return render_template('posts.html', username=session['username'], msg=msg)
+
+@app.route('/posts/<string:username>/')
+@check_logged_in
+def user_posts(username):
+    cursor.execute('SELECT title FROM articles WHERE author= %s', [username])
+    posts = cursor.fetchall()
+
+    return render_template('user_posts.html', username=username, posts=posts)
+
+# @app.route('/posts/<string:id>/')
+# @check_logged_in
+# def single_post(id):
+#     cursor.execute("SELECT * FROM articles WHERE id = %s", [id])
+#     post = cursor.fetchone()
+
+#     return render_template('user_posts.html', post=post)
 
 app.secret_key = os.getenv("secret_key")
 
