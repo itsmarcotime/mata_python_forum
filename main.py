@@ -120,18 +120,18 @@ def posts():
 @app.route('/posts/<string:username>/')
 @check_logged_in
 def user_posts(username):
-    cursor.execute('SELECT title FROM articles WHERE author= %s', [username])
+    cursor.execute('SELECT * FROM articles WHERE author= %s', [username])
     posts = cursor.fetchall()
 
     return render_template('user_posts.html', username=username, posts=posts)
 
-# @app.route('/posts/<string:id>/')
-# @check_logged_in
-# def single_post(id):
-#     cursor.execute("SELECT * FROM articles WHERE id = %s", [id])
-#     post = cursor.fetchone()
+@app.route('/posts/<string:username>/<string:id>/')
+@check_logged_in
+def single_user_post(id, username):
+    cursor.execute("SELECT * FROM articles WHERE id = %s AND author = %s", (id, username))
+    post = cursor.fetchone()
 
-#     return render_template('user_posts.html', post=post)
+    return render_template('user_single_post.html', post=post, username=username, id=id)
 
 app.secret_key = os.getenv("secret_key")
 
