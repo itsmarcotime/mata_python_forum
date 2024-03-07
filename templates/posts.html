@@ -35,33 +35,33 @@
 </table> -->
 
 {% for post in articles %}
-  <article>
-    <div>
+<article class="post_article">
+    <div class="margin_post">
         {% if post[2] == session['username'] %}
-        <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}">{{post[1]}}</a> 
+        <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}" class="green_link">{{post[1]}}</a> 
         {% else %}
         {{post[1]}}
         {% endif %}
         
         {% if post[2] == session['username'] %}
-        <a href="{{url_for('user_posts', username=post[2])}}">{{post[2]}}</a> 
+        <a href="{{url_for('user_posts', username=post[2])}}" class="green_link">{{post[2]}}</a> 
         {% else %}
         {{post[2]}}
         {% endif %}
 
-        <a href="#">{{post[4]}}</a>
+        <a href="#" class="default_link">{{post[4]}}</a>
     </div>
-    <div>
+    <div class="margin_post">
         <p>
             {{post[3]}}
         </p>
     </div>
-    <div>
-        <a href="#">likes</a>
-        <a href="#">comments</a>
-        <a href="edit_post/{{post[0]}}">edit</a>
-        <a href="#">delete</a>
+    <div class="margin_post">
+        <a href="#" class="green_link">likes</a>
+        <a href="#" class="green_link">comments</a>
+        <a href="edit_post/{{post[0]}}" class="green_link">edit</a>
+        <a href="#" class="green_link">delete</a>
     </div>
-  </article>
+</article>
 {% endfor %}
 {% endblock %}
