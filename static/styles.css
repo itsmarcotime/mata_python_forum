@@ -168,6 +168,11 @@ body.loggedin {
     text-decoration: none;
     color: rgb(225, 225, 225);
 }
+
+.posts_heading{
+    color: rgb(225, 225, 225);
+    text-align: center;
+}
 footer {
     color: rgb(225, 225, 225);
     text-align: center;

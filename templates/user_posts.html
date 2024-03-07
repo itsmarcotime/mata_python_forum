@@ -1,16 +1,36 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>{{username}}'s Posts.</h1>
+<h1 class="posts_heading">{{username}}'s Posts.</h1>
 
-<ul>
-    {% for post in posts %}
-    <a href="{{ url_for('single_user_post', username=username, id=post[0])}}">
-        <li>{{post[1]}}</li>
-    </a>
-    <li>{{post[3]}}</li>
-    <li>Writtten on {{post[4]}}</li>
-    <br/>
-    {% endfor %}
-</ul>
+{% for post in posts %}
+<article class="post_article">
+    <div class="margin_post">
+        {% if post[2] == session['username'] %}
+        <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}" class="green_link">{{post[1]}}</a> 
+        {% else %}
+        {{post[1]}}
+        {% endif %}
+        
+        {% if post[2] == session['username'] %}
+        <a href="{{url_for('user_posts', username=post[2])}}" class="green_link">{{post[2]}}</a> 
+        {% else %}
+        {{post[2]}}
+        {% endif %}
+
+        <a href="#" class="default_link">{{post[4]}}</a>
+    </div>
+    <div class="margin_post">
+        <p>
+            {{post[3]}}
+        </p>
+    </div>
+    <div class="margin_post">
+        <a href="#" class="green_link">likes</a>
+        <a href="#" class="green_link">comments</a>
+        <a href="edit_post/{{post[0]}}" class="green_link">edit</a>
+        <a href="#" class="green_link">delete</a>
+    </div>
+</article>
+{% endfor %}
 {% endblock %}

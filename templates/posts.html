@@ -1,38 +1,6 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<!-- <table>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Body Text</th>
-        <th>Date</th>
-        <th></th>
-        <th></th>
-    </tr>
-    {% for post in articles %}
-        <tr>
-        <td>
-            {% if post[2] == session['username'] %}
-            <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}">{{post[1]}}</a> 
-            {% else %}
-            {{post[1]}}
-            {% endif %}
-        </td>
-        <td>
-            {% if post[2] == session['username'] %}
-            <a href="{{url_for('user_posts', username=post[2])}}">{{post[2]}}</a> 
-            {% else %}
-            {{post[2]}}
-            {% endif %}
-        </td>
-        <td>{{post[3]}}</td>
-        <td>{{post[4]}}</td>
-        <td><a href='edit_post/{{post[0]}}'>Edit</a></td>
-        <td><a href='#'>Delete</a></td>
-        </tr>
-    {% endfor %}
-</table> -->
 
 {% for post in articles %}
 <article class="post_article">
