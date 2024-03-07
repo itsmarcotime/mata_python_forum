@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<table>
+<!-- <table>
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Body Text</th>
-      <th>Date</th>
-      <th></th>
-      <th></th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Body Text</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
     </tr>
     {% for post in articles %}
-      <tr>
+        <tr>
         <td>
             {% if post[2] == session['username'] %}
             <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}">{{post[1]}}</a> 
@@ -30,7 +30,38 @@
         <td>{{post[4]}}</td>
         <td><a href='edit_post/{{post[0]}}'>Edit</a></td>
         <td><a href='#'>Delete</a></td>
-      </tr>
+        </tr>
     {% endfor %}
-  </table>
-  {% endblock %}
+</table> -->
+
+{% for post in articles %}
+  <article>
+    <div>
+        {% if post[2] == session['username'] %}
+        <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}">{{post[1]}}</a> 
+        {% else %}
+        {{post[1]}}
+        {% endif %}
+        
+        {% if post[2] == session['username'] %}
+        <a href="{{url_for('user_posts', username=post[2])}}">{{post[2]}}</a> 
+        {% else %}
+        {{post[2]}}
+        {% endif %}
+
+        <a href="#">{{post[4]}}</a>
+    </div>
+    <div>
+        <p>
+            {{post[3]}}
+        </p>
+    </div>
+    <div>
+        <a href="#">likes</a>
+        <a href="#">comments</a>
+        <a href="edit_post/{{post[0]}}">edit</a>
+        <a href="#">delete</a>
+    </div>
+  </article>
+{% endfor %}
+{% endblock %}
