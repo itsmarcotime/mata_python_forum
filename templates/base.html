@@ -17,6 +17,7 @@
       <nav>
         {% if session['logged_in'] == True %}
         <a href="/home" class="pageTitle">Home Page</a>
+        <a href="/posts" class="">View Posts</a>
         <a href="{{url_for('do_logout')}}">
           <button id="logout" class="btn-no-style">
             Logout

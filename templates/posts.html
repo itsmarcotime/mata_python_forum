@@ -3,7 +3,6 @@
 {% block body %}
 <table>
     <tr>
-      <th>ID</th>
       <th>Title</th>
       <th>Author</th>
       <th>Body Text</th>
@@ -13,9 +12,20 @@
     </tr>
     {% for post in articles %}
       <tr>
-        <td>{{post[0]}}</td>
-        <td>{{post[1]}}</td>
-        <td>{{post[2]}}</td>
+        <td>
+            {% if post[2] == session['username'] %}
+            <a href="{{url_for('single_user_post', username=post[2], id=post[0])}}">{{post[1]}}</a> 
+            {% else %}
+            {{post[1]}}
+            {% endif %}
+        </td>
+        <td>
+            {% if post[2] == session['username'] %}
+            <a href="{{url_for('user_posts', username=post[2])}}">{{post[2]}}</a> 
+            {% else %}
+            {{post[2]}}
+            {% endif %}
+        </td>
         <td>{{post[3]}}</td>
         <td>{{post[4]}}</td>
         <td><a href='edit_post/{{post[0]}}'>Edit</a></td>
