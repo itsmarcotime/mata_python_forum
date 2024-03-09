@@ -79,6 +79,7 @@ def do_login():
         if record:
             session['logged_in'] = True
             session['username'] = record[1]
+            session['id'] = record[0]
             return redirect(url_for('home'))
         else:
             msg = 'Incorrect username or password. Try again!'
@@ -93,7 +94,7 @@ def do_logout():
 @app.route('/profile')
 @check_logged_in
 def profile():
-    cursor.execute("SELECT * FROM accounts WHERE id = %s", (session[id],))
+    cursor.execute("SELECT * FROM accounts WHERE id = %s", (session['id'],))
     account = cursor.fetchone()
     return render_template('profile.html', account=account)
 
