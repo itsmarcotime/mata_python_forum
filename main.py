@@ -90,6 +90,13 @@ def do_logout():
     session.pop('username')
     return redirect(url_for('do_login'))
 
+@app.route('/profile')
+@check_logged_in
+def profile():
+    cursor.execute("SELECT * FROM accounts WHERE id = %s", (session[id],))
+    account = cursor.fetchone()
+    return render_template('profile.html', account=account)
+
 @app.route('/add_post', methods=['GET', 'POST'])
 @check_logged_in
 def add_post():
