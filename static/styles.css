@@ -173,6 +173,11 @@ body.loggedin {
     color: rgb(225, 225, 225);
     text-align: center;
 }
+
+.profile_underline {
+    color: rgb(225, 225, 225);
+    text-decoration: underline rgb(53, 199, 89);
+}
 footer {
     color: rgb(225, 225, 225);
     text-align: center;
