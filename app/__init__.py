@@ -8,6 +8,10 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = "Helloworld"
 
+    from .main_pages import main_pages
+
+    app.register_blueprint(main_pages, url_prefix="/")
+
     return app
 
 
