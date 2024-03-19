@@ -6,7 +6,7 @@ import os
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = os.getenv("secret_key")
+    app.config['SECRET_KEY'] = "Helloworld"
 
     return app
 
